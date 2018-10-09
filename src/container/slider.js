@@ -61,32 +61,29 @@ class Slider extends Component{
         const {properties,property}=this.state;
        
         return (
-            <div className="main">
-
-                    <i className="fas fa-arrow-circle-left" onClick={()=>this.gotToPrevSlide()} disabled={property.index === data.properties.length-1}></i>
-                    <i className="fas fa-arrow-circle-right" onClick={()=>this.gotToNextSlide()} disabled={property.index === 0}></i>
-
-                <div className="col">
-                <div className={`cards-slider active-slide-${property.index}`}>
-                    <div className='cards-slider-wrapper' style={{
-                        'transform':`translateX(-${property.index*(100/properties.length)}%)`
-                    }}>
-                    {
-                        this.state.dataTracks.map(propertys=>{
-                            
-                           return property.index === propertys.index ?
-                              <Card key={propertys.id} 
-                              name={propertys.name} 
-                              image={propertys.image}
-                              index={propertys.index}
-                              tracks={propertys.tracks}/>:false
-                        })
-                    }
+            <div className="App">
+                <i className="fas fa-arrow-circle-left" onClick={()=>this.gotToPrevSlide()} disabled={property.index === (data.properties.length-1)}></i>
+                <i className="fas fa-arrow-circle-right" onClick={()=>this.gotToNextSlide()} disabled={property.index === 0}></i>
+                
+                <div className="page">
+                   <div className="col">
+                    <div className={`cards-slider active-slide-${property.index}`}>
+                        <div className='cards-slider-wrapper' style={{'transform':`translateX(-${property.index*(100/properties.length)}%)`}}>
+                            {
+                                this.state.dataTracks.map(propertys=>{
+                                return property.index === propertys.index ?
+                                    <Card key={propertys.id} 
+                                    name={propertys.name} 
+                                    image={propertys.image}
+                                    index={propertys.index}
+                                    tracks={propertys.tracks}/>:false
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
-                
                 </div>
-
+ 
             </div>
         )
     }

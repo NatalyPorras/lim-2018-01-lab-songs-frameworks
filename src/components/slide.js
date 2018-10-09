@@ -3,9 +3,8 @@ import Likes from './likes.js'
 const Card = (props) =>{
     const{name,image,tracks,index}=props
     return (
-        <div  className='card'>
+        <div  id={`card-${index}`} className='card'>
              <img src={image} alt={name}/>
-
              <div className='details'>
                 <p>{name}</p>
                 <div>
@@ -21,9 +20,7 @@ const Card = (props) =>{
                     })
                     }
                 </div>
-
-                <span className='index'>{index+1}</span>
-            </div>} 
+            </div>
         </div>
     )
 }
