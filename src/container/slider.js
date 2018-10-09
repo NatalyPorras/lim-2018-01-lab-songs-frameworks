@@ -14,11 +14,16 @@ class Slider extends Component{
         this.state = {
             dataTracks:[],
             properties: data.properties,
-            property: data.properties[1]
+            property: data.properties[0]
         }
     }
-
-    loadData(){
+    gotToNextSlide = () =>{
+        const newIndex= this.state.property.index+1;
+        this.setState({
+            property: data.properties[newIndex]
+        })
+    }
+   loadData(){
         let { dataTracks } = this.state;
               Object.values(data).forEach(artist=>{          
                 artist.forEach(artistList =>{   
@@ -38,39 +43,36 @@ class Slider extends Component{
                 })
               })
         }
-
+ 
     gotToPrevSlide = () =>{
         const newIndex= this.state.property.index-1;
         this.setState({
             property: data.properties[newIndex]
         })
     }
-    gotToNextSlide = () =>{
-        const newIndex= this.state.property.index+1;
-        this.setState({
-            property: data.properties[newIndex]
-        })
-    }
+
+
         
     componentDidMount(){
         this.loadData();
     }
-
+ 
     render(){
 
-        const {properties,property}=this.state;
+        const {properties,property,dataTracks}=this.state;
        
         return (
             <div className="App">
-                <i className="fas fa-arrow-circle-left" onClick={()=>this.gotToPrevSlide()} disabled={property.index === (data.properties.length-1)}></i>
-                <i className="fas fa-arrow-circle-right" onClick={()=>this.gotToNextSlide()} disabled={property.index === 0}></i>
+                <button onClick={()=>this.gotToNextSlide()} disabled={property.index === data.properties.length-1}>Next</button>
+                <button onClick={()=>this.gotToPrevSlide()} disabled={property.index === 0}>Prev</button>
+                
                 
                 <div className="page">
-                   <div className="col">
-                    <div className={`cards-slider active-slide-${property.index}`}>
-                        <div className='cards-slider-wrapper' style={{'transform':`translateX(-${property.index*(100/properties.length)}%)`}}>
+                    <div className='cards-slider'>
+                        <div className='cards-slider-wrapper'>
+                            <div>
                             {
-                                this.state.dataTracks.map(propertys=>{
+                                dataTracks.map(propertys=>{
                                 return property.index === propertys.index ?
                                     <Card key={propertys.id} 
                                     name={propertys.name} 
@@ -79,11 +81,12 @@ class Slider extends Component{
                                     tracks={propertys.tracks}/>:false
                                 })
                             }
+                            </div> 
+                           
+
                         </div>
-                    </div>
+                    </div> 
                 </div>
-                </div>
- 
             </div>
         )
     }

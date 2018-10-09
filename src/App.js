@@ -6,10 +6,10 @@ class App extends Component {
   render() {   
 
     return (
-      <div className="principal">
+      <div>
         <header>
           <h3>
-            Learn React
+           Ranking Songs
           </h3>
         </header>
        <Slider />
