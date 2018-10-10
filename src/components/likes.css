@@ -1,0 +1,8 @@
+.options{
+    display: flex;
+    justify-content: space-around
+}
+
+.options1{
+    width: 100px;
+}
