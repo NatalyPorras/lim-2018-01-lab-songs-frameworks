@@ -27,7 +27,7 @@ class Slider extends Component{
         let { dataTracks } = this.state;
               Object.values(data).forEach(artist=>{          
                 artist.forEach(artistList =>{   
-                    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artistList.name}&api_key=abbfe0feb0cf98ff82ecdbb23d78c656&format=json`)
+                    fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artistList.name}&api_key=abbfe0feb0cf98ff82ecdbb23d78c656&format=json`)
                     .then (response => response.json())
                     .then (artistListData=>{       
                         Object.values(artistListData).forEach(artistData =>{
