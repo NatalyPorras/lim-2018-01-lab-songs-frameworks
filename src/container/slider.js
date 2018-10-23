@@ -3,8 +3,7 @@ import Card from '../components/slide';
 // import LeftArrow from '../components/left';
 // import RigthArrow from '../components/rigth';
 import data from '../data/data';
-
-import './Slider.css'
+import './Slider.scss'
 
 
 class Slider extends Component{
@@ -32,16 +31,16 @@ class Slider extends Component{
                     .then (artistListData=>{       
                         Object.values(artistListData).forEach(artistData =>{
                                 dataTracks.push({
-                                    id:artistList.id,
-                                    name:artistList.name,
-                                    image:artistList.image,
                                     index:artistList.index,
                                     tracks:artistData.track})
-                            this.setState({dataTracks});
                         })
+                        this.setState({dataTracks});
+
                     })    
+
                 })
               })
+
         }
  
     gotToPrevSlide = () =>{
@@ -50,10 +49,8 @@ class Slider extends Component{
             property: data.properties[newIndex]
         })
     }
-
-
         
-    componentDidMount(){
+    componentWillMount(){
         this.loadData();
     }
  
@@ -63,30 +60,39 @@ class Slider extends Component{
        
         return (
             <div className="App">
+
+                <header>
+                        <h1>Ranking de canciones</h1>
+                </header>
+                
                 <button onClick={()=>this.gotToNextSlide()} disabled={property.index === data.properties.length-1}>Next</button>
                 <button onClick={()=>this.gotToPrevSlide()} disabled={property.index === 0}>Prev</button>
                 
                 
                 <div className="page">
-                    <div className='cards-slider'>
-                        <div className='cards-slider-wrapper'>
-                            <div>
-                            {
-                                dataTracks.map(propertys=>{
-                                return property.index === propertys.index ?
-                                    <Card key={propertys.id} 
-                                    name={propertys.name} 
-                                    image={propertys.image}
-                                    index={propertys.index}
-                                    tracks={propertys.tracks}/>:false
-                                })
-                            }
-                            </div> 
-                           
-
+                    <div className="col">
+                        <div className={`cards-slider active-slide-${property.index}`}>
+                            <div className="cards-slider-wrapper" style={{
+                                'transform':`translateX(-${property.index*(100/properties.length)}%)`
+                            }}>
+                                {
+                                   properties.map(property=> {
+                                        return dataTracks.map(track =>{
+                                            if(property.index === track.index){
+                                                
+                                               return(
+                                                     <Card key={property.id} property={property} tracks={track.tracks}/>
+                                                                                                  )
+                                            }
+                                        })
+                                    })
+                          
+                                }
+                            </div>
                         </div>
-                    </div> 
-                </div>
+                    </div>      
+
+                </div> 
             </div>
         )
     }
