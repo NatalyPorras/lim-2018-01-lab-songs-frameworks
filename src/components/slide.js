@@ -3,6 +3,8 @@ import Likes from './likes.js'
 import './slide.css'
 const Card = ({property,tracks}) =>{
     const {index,image,name} = property
+  const nameList=tracks.slice(0,11);
+  console.log(nameList);
   
     return (
             <div  id={`card-${index}`} className="card">
@@ -13,7 +15,6 @@ const Card = ({property,tracks}) =>{
                     <div>
                         {
                             tracks.map((list)=>{
-                                console.log(list);
                                 
                                 return(<p>{list.name}</p>)
                             })
