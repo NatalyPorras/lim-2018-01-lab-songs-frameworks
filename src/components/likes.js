@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './likes.css';
 
 class Likes extends Component {
     constructor(props){
@@ -30,9 +29,9 @@ class Likes extends Component {
         return (
             <div className="options">
                 <div className="options1"><h5>{name}</h5></div>
-                <div className="options1"><i class="far fa-thumbs-up" onClick={this.countLikesButton.bind(this)}></i></div>
-                <div className="options1"><i class="far fa-thumbs-down" onClick={this.countDislikes.bind(this)}></i></div>
-                <div className="options1"><h5>{this.state.likes}</h5></div>
+                <div className="options2"><i className="far fa-thumbs-up" onClick={this.countLikesButton.bind(this)}></i></div>
+                <div className="options3"><i className="far fa-thumbs-down" onClick={this.countDislikes.bind(this)}></i></div>
+                <div className="options4"><h5>{this.state.likes}</h5></div>
             </div>
         )
     }

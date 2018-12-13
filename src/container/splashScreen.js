@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Slider from './slider'
-import './container.css'
+import './container.css';
+import '../fuentes/font.css'
 class Splash extends Component{
     constructor(props){
         super(props);

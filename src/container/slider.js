@@ -60,16 +60,20 @@ class Slider extends Component{
        
         return (
             <div className="App">
-
                 <header>
-                        <h1>Ranking de canciones</h1>
+                        <h1>Ranking de Canciones</h1>
                 </header>
-                
-                <button onClick={()=>this.gotToNextSlide()} disabled={property.index === data.properties.length-1}>Next</button>
-                <button onClick={()=>this.gotToPrevSlide()} disabled={property.index === 0}>Prev</button>
-                
-                
+                                
                 <div className="page">
+                    <div className="direcciones">
+                        <div className="btn-border mr-9">
+                        <button onClick={()=>this.gotToPrevSlide()} disabled={property.index === 0}><i class="fas fa-angle-left"></i></button>
+                        </div>
+                        <div className="btn-border ml-9">
+                        <button onClick={()=>this.gotToNextSlide()} disabled={property.index === data.properties.length-1}><i class="fas fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                    
                     <div className="col">
                         <div className={`cards-slider active-slide-${property.index}`}>
                             <div className="cards-slider-wrapper" style={{
@@ -91,7 +95,6 @@ class Slider extends Component{
                             </div>
                         </div>
                     </div>      
-
                 </div> 
             </div>
         )
